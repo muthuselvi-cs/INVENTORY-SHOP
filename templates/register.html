@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background: linear-gradient(135deg, #667eea, #764ba2);">
+
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow" style="width: 380px;">
+      <h3 class="text-center mb-3">Register</h3><hr class="pb-4">
+      
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for msg in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ msg }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <form method="post" action="/register">
+      <div class="row">
+        <!-- First Name -->
+        <div class="col">
+        <div class="mb-3">
+          <input type="text" class="form-control text-center" name="f_name" placeholder="Enter first name">
+        </div>
+        </div>
+
+        <!-- Last Name -->
+        <div class="col">
+        <div class="mb-3">
+          <input type="text" name="l_name" class="form-control text-center" placeholder="Enter last name">
+        </div>
+        </div>
+      </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <input type="email" name="email" class="form-control text-center" placeholder="Enter email">
+        </div>
+
+        <div class="mb-3">
+            <input  name="phno" class="form-control text-center " placeholder="Enter Phone No">
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <input type="password" name="password" class="form-control text-center" placeholder="Enter password" required>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mb-3">
+          <input type="password" name="c_password" class="form-control text-center" placeholder="Confirm password" required>
+        </div>
+
+        <button type="submit"  class="btn btn-primary w-100">Create an acoount </button>
+      </form>
+
+      <p class="text-center mt-3 mb-0">
+        Already have an account? <a href="/login">Login</a>
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

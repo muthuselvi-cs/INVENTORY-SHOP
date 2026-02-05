@@ -1,0 +1,135 @@
+<!DOCTYPE htm>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MYShop</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<body class="bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-5">
+  <div class="container">
+    
+    <!-- APP NAME / LOGO -->
+   <span class="navbar-brand fw-bold text-warning me-5 fs-1">🛒 MyShop</span>
+   <!--search Bar-->
+   <div class="mx-auto" style="width:420px;">
+    <div class="input-group">
+      <input type="search" 
+             class="form-control border-end-0 ms-5" 
+             name="query"
+             id="searchInput"
+             placeholder="Search MyShop.in"
+             aria-label="Search"
+             onkeyup="searchProducts()">
+             <button class="input-group-text bg-warning border-start-0" 
+             type="button"
+             onclick="searchProducts()">
+              <i class="bi bi-search"></i>
+             </button> 
+    </div>
+   </div>
+   
+    <!-- TOGGLE (MOBILE) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- MENU -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+          <a class="nav-link active text-white fs-4" href="/">Home</a>
+        </li>
+
+        <li class="nav-item">
+          {% if session.get('logged_in') %}
+          <a class="nav-link active text-white fs-4" href="/logout">Logout</a>
+          {% else %}
+          <a class="nav-link active text-white fs-4" href="/login">🔐 Login</a>
+          {% endif %}
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active text-white fs-4" href="/register">📝 Register</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link position-relative text-white fs-4" href="/cart">🛒 Cart 
+            {% if cart_count > 0 %} 
+            <span class=" position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark ">
+              {{cart_count}} 
+            </span>
+            {% endif %}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fs-4" href="/orders">📦My Orders</a>
+        </li>
+        <li class="nav-item">
+          <a href="nav-link text-white fs-4"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid  m-4 pe-4 me-5">
+<div class="text-end mb-3 me-3 pe-3">
+  <a href="/cart" class="btn btn-warning ">🛒 View Cart</a>
+</div>
+
+  <div class="row me-3">
+    {% for p in products %}
+    <div class="col-md-4 mb-4 product-card">
+      <div class="card shadow h-100">
+        <img src="{{ url_for('static', filename='uploads/' ~ p.p_image) }}" class="card-img-top" height="200">
+
+        <div class="card-body text-center">
+          <h5 class="product-name">{{ p.p_name }}</h5>
+          <p class="text-success fw-bold">₹ {{ p.p_rate }}</p>
+
+          <!-- ORDER QUANTITY -->
+          <form method="POST" action="add_to_cart">
+            <input type="hidden" name="p_id" value="{{ p.p_id }}">
+
+            <label>Quantity</label>
+            <input type="number" name="p_quantity" value="1" min="1" class="form-control mb-2">
+             <a href="{{ url_for('add_to_cart', p_id=p.p_id) }}"
+   class="btn btn-primary">
+   Add to Cart
+</a>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+<script>
+function searchProducts() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let products = document.getElementsByClassName("product-card");
+
+  for (let i = 0; i < products.length; i++) {
+    let name = products[i]
+      .getElementsByClassName("product-name")[0]
+      .innerText.toLowerCase();
+
+    if (name.includes(input)) {
+      products[i].style.display = "block";
+    } else {
+      products[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+
+</body>
+</html>

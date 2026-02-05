@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>My Orders</h2>
+
+{% if orders %}
+  {% for order in orders %}
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:15px;">
+      <p><b>Order ID:</b> {{ order.id }}</p>
+      <p><b>Date:</b> {{ order.created_at }}</p>
+      <p><b>Payment:</b> {{ order.payment_method }}</p>
+      <p><b>Total:</b> ₹{{ order.total_amount }}</p>
+
+      <table border="1" width="100%">
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Qty</th>
+        </tr>
+
+        {% for item in order['items'] %}
+        <tr>
+          <td>{{ item.product_name }}</td>
+          <td>₹{{ item.price }}</td>
+          <td>{{ item.quantity }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>No orders yet.</p>
+{% endif %}
+
+</body>
+</html>
