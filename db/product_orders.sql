@@ -1,0 +1,66 @@
+-- MySQL dump 10.13  Distrib 8.0.44, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: product
+-- ------------------------------------------------------
+-- Server version	9.5.0
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+SET @MYSQLDUMP_TEMP_LOG_BIN = @@SESSION.SQL_LOG_BIN;
+SET @@SESSION.SQL_LOG_BIN= 0;
+
+--
+-- GTID state at the beginning of the backup 
+--
+
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'b149079f-f4f9-11f0-9133-9c5a443b51a0:1-233';
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `address` text,
+  `payment_method` varchar(20) DEFAULT NULL,
+  `total_amount` int DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (2,1,'muthu selvi','7708345433','tvl','COD',45,'2026-02-03 10:55:21'),(3,1,'muthu','7708345433','tvl','COD',30,'2026-02-03 11:19:20'),(4,1,'muthu selvi','7708345433','tvl','COD',15,'2026-02-03 11:29:01'),(5,1,'priya','8973437834','tvl','COD',15,'2026-02-03 11:35:58'),(6,NULL,'janu','8787089789','tvl','COD',20,'2026-02-04 10:07:07'),(7,NULL,'jaanu','8973437834','tvl','COD',20,'2026-02-04 10:11:00'),(8,NULL,'muthu selvi','7708345433','tvl','COD',20,'2026-02-04 10:18:59'),(9,NULL,'muthu selvi','7708345433','tvl','COD',20,'2026-02-04 10:31:11'),(10,NULL,'kumar','7708345433','tnagar','COD',20,'2026-02-04 10:36:17'),(11,NULL,'muthu selvi','7708345433','tvl','COD',20,'2026-02-04 10:47:07'),(12,NULL,NULL,NULL,NULL,'COD',20,'2026-02-04 10:48:17'),(13,NULL,NULL,NULL,NULL,'COD',20,'2026-02-04 10:54:48'),(14,NULL,'Admin','1234567890','user address','COD',70,'2026-02-04 11:13:13'),(15,NULL,'Admin','1234567890','user address','COD',20,'2026-02-04 11:33:02'),(16,NULL,'Admin','1234567890','user address','COD',20,'2026-02-04 11:38:29'),(17,NULL,'muthu selvi','7708345433','we','COD',50,'2026-02-04 11:51:19'),(18,NULL,'harini','9988776655','tvl','COD',365,'2026-02-05 07:01:14');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2026-02-05 17:12:28
