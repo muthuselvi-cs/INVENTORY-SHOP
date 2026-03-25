@@ -33,11 +33,12 @@
                 <td>{{ p.p_name }}</td> 
                 <td>{{ p.p_rate }}</td> 
                 <td>{{ p.p_quantity }}</td> 
-                <td> <img src="{{ url_for('static', filename='uploads/' ~ p.p_image) }}" width="80"> </td> 
-                <td> <button class="btn btn-primary btn-sm" onclick="openEditModal('{{ p.p_id }}','{{ p.p_name }}','{{ p.p_rate }}','{{ p.p_quantity }}','{{ p.p_image }}')">
+                <td> <img src="{{ url_for('static', filename='uploads/' ~ p.p_image) }}" 
+                          style="width: 80px; height: 80px; object-fit: cover;display:block; margin:0 auto;"></td>
+                <td> <button class="btn btn-primary btn-sm mb-1" onclick="openEditModal('{{ p.p_id }}','{{ p.p_name }}','{{ p.p_rate }}','{{ p.p_quantity }}','{{ p.p_image }}')">
                        Edit 
                       </button> 
-                      <button class="btn btn-danger btn-sm" onclick="openDeleteModal('{{ p.p_id }}')"> 
+                      <button class="btn btn-danger btn-sm mb-1" onclick="openDeleteModal('{{ p.p_id }}')"> 
                         Delete </button> 
                 </td> 
               </tr> 
